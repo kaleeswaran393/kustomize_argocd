@@ -6,8 +6,11 @@ metadata:
 spec:
   selector:
     app: flightserver
+  type: NodePort
   ports:
     - port: 5000 # Default port for image
+      nodePort: 31000
+      targetPort: 5000 
 
 ---
 
