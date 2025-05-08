@@ -3,5 +3,5 @@ commonLabels:
 
 resources:
 - backend-flightserver.yaml
-- backend-gateway.yaml
+
 
