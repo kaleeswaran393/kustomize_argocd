@@ -1,0 +1,48 @@
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: flightserver
+spec:
+  selector:
+    app: flightserver
+  ports:
+    - port: 5000 # Default port for image
+
+---
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: flightserver
+spec:
+  # modify replicas according to your case
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flightserver
+  template:
+    metadata:
+      labels:
+         app: flightserver
+    spec:
+      containers:
+      -  name: flightserver
+         image: kaleeswarankaruppusamy/k8s:flightfinder-dotnet9-appv
+         imagePullPolicy: "Always"
+         ports:
+         - containerPort: 5000
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpas-flightserver
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: ReplicaSet
+    name: flightserver
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 50
