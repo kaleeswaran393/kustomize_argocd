@@ -3,5 +3,6 @@ commonLabels:
 
 resources:
 - backend-flightserver.yaml
+- ingress.yaml
 
 
