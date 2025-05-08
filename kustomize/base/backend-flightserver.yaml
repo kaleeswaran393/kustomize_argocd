@@ -8,8 +8,6 @@ spec:
     app: flightserver
   ports:
     - port: 5000 # Default port for image
-  type: NodePort
-  nodePort: 30000
 
 ---
 
