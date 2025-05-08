@@ -1,7 +1,6 @@
+namePrefix: staging-
 commonLabels:
-  app: flightserver
-
-resources:
-- backend-flightserver.yaml
-- backend-gateway.yaml
+  variant: staging
+bases:
+- ../../base
 
